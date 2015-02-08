@@ -1,6 +1,6 @@
 package com.kgm.kNotes;
 
-import com.kgm.kNotes.R;
+import com.kgm.knotes.R;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -13,12 +13,8 @@ public class Main extends Activity {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		Button btn = null;
-		
-		View v = new View(this.getBaseContext());
-
 		super.onCreate(savedInstanceState);
 
-		setContentView(v);
+		setContentView(R.layout.lay_main);
 	}
 }
