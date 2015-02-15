@@ -7,7 +7,13 @@
     <ListView
         android:id="@+id/lst_notes"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="438dp" >
     </ListView>
+
+    <Button
+        android:id="@+id/btn_new"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="New" />
 
 </LinearLayout>
