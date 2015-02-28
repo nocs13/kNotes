@@ -111,7 +111,9 @@ public class Notes {
 			
 			String title = ((Element)el.getElementsByTagName("Title").item(0)).getTextContent();
 			String date = ((Element)el.getElementsByTagName("Date").item(0)).getTextContent();
-			String data = ((Element)el.getElementsByTagName("Data").item(0)).getTextContent();
+			String data = ((Element)el.getElementsByTagName("Data").item(0)).getFirstChild().getNodeValue();
+			
+			data = data.replaceAll("&amp;#13;", "\n");
 			
 			Note note = new Note(title, data, date);
 			
@@ -151,8 +153,12 @@ public class Notes {
 		e.setTextContent(note.getDate());
 		el.appendChild(e);
 		
+		String cnote = note.getNote();
+		
+		cnote = cnote.replace("\n", "&amp;#13;");
+		
 		e = xml_doc.createElement("Data");
-		e.setTextContent(note.getNote());
+		e.appendChild(xml_doc.createCDATASection(cnote));
 		el.appendChild(e);
 		
 		doc.appendChild(el);

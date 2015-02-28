@@ -10,12 +10,15 @@ import com.kgm.kNotes.R;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.view.View.OnClickListener;
@@ -23,6 +26,7 @@ import android.view.View.OnClickListener;
 public class Main extends Activity {
 	private Notes notes = null;
 	private String dir = "";
+	private int layid = -1;
 	
 	public Main() {
 	}
@@ -31,7 +35,33 @@ public class Main extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
+		mainLayer();
+	}
+	
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+	    if (keyCode == KeyEvent.KEYCODE_BACK) {
+	    	if (layid == R.layout.lay_main) {
+	    		finish();
+	    	} else if (layid == R.layout.lay_new) {
+	    		mainLayer();
+	    	} else if (layid == R.layout.lay_note) {
+	    		mainLayer();
+	    	} else if (layid == R.layout.lay_wrong) {
+	    		//newLayer();
+	    		mainLayer();
+	    	}
+	        // your code
+	        return true;
+	    }
+
+	    return super.onKeyDown(keyCode, event);
+	}
+	
+	public void mainLayer()
+	{
 		setContentView(R.layout.lay_main);
+		layid = R.layout.lay_main;
 		
 		dir = this.getApplicationInfo().dataDir;
 		
@@ -55,6 +85,7 @@ public class Main extends Activity {
 	        final Note note = al.get(position);
 	        
 	    		setContentView(R.layout.lay_note);
+	    		layid = R.layout.lay_note;
 	    		
 	    		TextView tv = (TextView) findViewById(R.id.lnote_tv_title);
 	    		tv.setText(note.getTitle());
@@ -68,9 +99,9 @@ public class Main extends Activity {
 	    		if (btn != null) {
 	    			btn.setOnClickListener(new OnClickListener() {
 	    				public void onClick(View v) {
-	    					setContentView(R.layout.lay_main);
-	    					
 	    					notes.remove(note);
+	    					
+	    					mainLayer();
 	    				}
 	    			});
 	    		}
@@ -88,59 +119,44 @@ public class Main extends Activity {
 		if (btn != null) {
 			btn.setOnClickListener(new OnClickListener() {
 				public void onClick(View v) {
-					setContentView(R.layout.lay_new);
-
-					Button btn = (Button) findViewById(R.id.btn_add);
-					
-					if (btn != null) {
-						btn.setOnClickListener(new OnClickListener() {
-							public void onClick(View v) {
-								EditText title = (EditText) findViewById(R.id.et_new_title);
-								EditText note = (EditText) findViewById(R.id.et_new_note);
-								
-								if (title.getText().toString().length() < 1 || note.getText().toString().length() < 1) {
-									
-									setContentView(R.layout.lay_wrong);
-									
-									return;
-								}
-								
-								DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
-								Date today = Calendar.getInstance().getTime();        
-								String date = df.format(today);
-
-								Note n = new Note(title.getText().toString(), note.getText().toString(), date);
-								
-								notes.add(n);
-								
-								setContentView(R.layout.lay_main);
-							}
-						});
-					}
+					newLayer();
 				}
 			});
 		}
 	}
 	
-	public void refresh() {
-		dir = this.getApplicationInfo().dataDir;
+	public void newLayer()
+	{
+		setContentView(R.layout.lay_new);
+		layid = R.layout.lay_new;
+
+		Button btn = (Button) findViewById(R.id.btn_add);
 		
-		notes = new Notes(dir);
+		if (btn != null) {
+			btn.setOnClickListener(new OnClickListener() {
+				public void onClick(View v) {
+					EditText title = (EditText) findViewById(R.id.et_new_title);
+					EditText note = (EditText) findViewById(R.id.et_new_note);
+					
+					if (title.getText().toString().length() < 1 || note.getText().toString().length() < 1) {
+						
+						setContentView(R.layout.lay_wrong);
+						layid = R.layout.lay_wrong;
+						
+						return;
+					}
+					
+					DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+					Date today = Calendar.getInstance().getTime();        
+					String date = df.format(today);
 
-		ListView lv = (ListView) findViewById(R.id.lst_notes);
-		
-		lv.removeAllViews();
-		
-		try {
-			ArrayList<Note> al = notes.getNotes();
+					Note n = new Note(title.getText().toString(), note.getText().toString(), date);
+					
+					notes.add(n);
 
-			ArrayAdapter aa = new ArrayAdapter(this, R.layout.sample_note_view, al);
-
-			lv.setAdapter(aa);			
-
-		} catch (Exception e) {
-			String msg = e.getMessage();
-			System.out.println("Main::Main error: " + e.getMessage());
+					mainLayer();
+				}
+			});
 		}
 	}
 }
