@@ -175,8 +175,10 @@ public class Notes {
 			
 			el = (Element) el.getParentNode();
 			
-			if (el.getElementsByTagName("Title").item(0).getTextContent() == note.getTitle() &&
-					el.getElementsByTagName("Date").item(0).getTextContent() == note.getDate()) {
+			String title = el.getElementsByTagName("Title").item(0).getTextContent();
+			String date = el.getElementsByTagName("Date").item(0).getTextContent();
+			
+			if (title.equals(note.getTitle()) && date.equals(note.getDate())) {
 				doc.removeChild(el);
 			}
 		}
