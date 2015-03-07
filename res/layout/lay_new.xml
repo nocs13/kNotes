@@ -4,22 +4,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <LinearLayout
+    <EditText
+        android:id="@+id/et_new_title"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-
-        <EditText
-            android:id="@+id/et_new_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Insert Title"
-            android:inputType="text"
-            android:maxLines="1" >
-
-            <requestFocus />
-        </EditText>
-    </LinearLayout>
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Insert Title"
+        android:inputType="text"
+        android:maxLines="1" />
 
     <EditText
         android:id="@+id/et_new_note"
@@ -28,7 +20,8 @@
         android:layout_weight="0.10"
         android:ems="10"
         android:hint="Insert Note"
-        android:inputType="textMultiLine" />
+        android:inputType="textMultiLine"
+        android:maxLines="100" />
 
     <Button
         android:id="@+id/btn_add"

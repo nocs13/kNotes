@@ -31,6 +31,7 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
 public class Notes {
+	
 	private XmlPullParserFactory xml_object = null;
 	private XmlPullParser xml_parser = null;
 
