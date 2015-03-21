@@ -5,15 +5,6 @@
     android:orientation="vertical" >
 
     <EditText
-        android:id="@+id/et_new_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Insert Title"
-        android:inputType="text"
-        android:maxLines="1" />
-
-    <EditText
         android:id="@+id/et_new_note"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

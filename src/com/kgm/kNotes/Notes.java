@@ -116,7 +116,7 @@ public class Notes {
 			
 			data = data.replaceAll("&amp;#13;", "\n");
 			
-			Note note = new Note(title, data, date);
+			Note note = new Note(data, date);
 			
 			list.add(note);
 		}
@@ -146,10 +146,6 @@ public class Notes {
 		
 		Element e = null;
 		
-		e = xml_doc.createElement("Title");
-		e.setTextContent(note.getTitle());
-		el.appendChild(e);
-		
 		e = xml_doc.createElement("Date");
 		e.setTextContent(note.getDate());
 		el.appendChild(e);
@@ -175,17 +171,14 @@ public class Notes {
 		
 		Element doc = xml_doc.getDocumentElement();
 		
-		NodeList nl = xml_doc.getElementsByTagName("Title");
+		NodeList nl = xml_doc.getElementsByTagName("Note");
 
 		for (int i = 0; i < nl.getLength(); i++) {
 			Element el = (Element) nl.item(i);
 			
-			el = (Element) el.getParentNode();
-			
-			String title = el.getElementsByTagName("Title").item(0).getTextContent();
 			String date = el.getElementsByTagName("Date").item(0).getTextContent();
 			
-			if (title.equals(note.getTitle()) && date.equals(note.getDate())) {
+			if (date.equals(note.getDate())) {
 				doc.removeChild(el);
 			}
 		}

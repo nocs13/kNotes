@@ -87,9 +87,7 @@ public class Main extends Activity {
 	    		setContentView(R.layout.lay_note);
 	    		layid = R.layout.lay_note;
 	    		
-	    		TextView tv = (TextView) findViewById(R.id.lnote_tv_title);
-	    		tv.setText(note.getTitle());
-	    		tv = (TextView) findViewById(R.id.lnote_tv_date);
+	    		TextView tv = (TextView) findViewById(R.id.lnote_tv_date);
 	    		tv.setText(note.getDate());
 	    		tv = (TextView) findViewById(R.id.lnote_tv_note);
 	    		tv.setText(note.getNote());
@@ -135,11 +133,9 @@ public class Main extends Activity {
 		if (btn != null) {
 			btn.setOnClickListener(new OnClickListener() {
 				public void onClick(View v) {
-					EditText title = (EditText) findViewById(R.id.et_new_title);
 					EditText note = (EditText) findViewById(R.id.et_new_note);
 					
-					if (title.getText().toString().length() < 1 || note.getText().toString().length() < 1) {
-						
+					if (note.getText().toString().length() < 1) {
 						setContentView(R.layout.lay_wrong);
 						layid = R.layout.lay_wrong;
 						
@@ -150,7 +146,7 @@ public class Main extends Activity {
 					Date today = Calendar.getInstance().getTime();        
 					String date = df.format(today);
 
-					Note n = new Note(title.getText().toString(), note.getText().toString(), date);
+					Note n = new Note(note.getText().toString(), date);
 					
 					notes.add(n);
 

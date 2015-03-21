@@ -6,12 +6,6 @@
     android:orientation="vertical" >
 
     <TextView
-        android:id="@+id/lnote_tv_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="" />
-
-    <TextView
         android:id="@+id/lnote_tv_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -21,7 +15,7 @@
         android:id="@+id/lnote_tv_note"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.73" />
+        android:layout_weight="0.75" />
 
     <Button
         android:id="@+id/lnote_btn_remove"
