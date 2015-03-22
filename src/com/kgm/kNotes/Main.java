@@ -24,7 +24,6 @@ import android.widget.TextView;
 import android.view.View.OnClickListener;
 
 public class Main extends Activity {
-	
 	private Notes notes = null;
 	private String dir = "";
 	private int layid = -1;
@@ -68,9 +67,10 @@ public class Main extends Activity {
 		
 		notes = new Notes(dir);
 
+		ListView lv = (ListView) findViewById(R.id.lst_notes);	
+		
 		try {
-			ListView lv = (ListView) findViewById(R.id.lst_notes);	
-			
+
 			final ArrayList<Note> al = notes.getNotes();
 
 			ArrayAdapter aa = new ArrayAdapter(this, R.layout.sample_note_view, al);
@@ -87,7 +87,7 @@ public class Main extends Activity {
 	    		setContentView(R.layout.lay_note);
 	    		layid = R.layout.lay_note;
 	    		
-	    		TextView tv = (TextView) findViewById(R.id.lnote_tv_date);
+                TextView tv = (TextView) findViewById(R.id.lnote_tv_date);
 	    		tv.setText(note.getDate());
 	    		tv = (TextView) findViewById(R.id.lnote_tv_note);
 	    		tv.setText(note.getNote());
@@ -104,7 +104,9 @@ public class Main extends Activity {
 	    			});
 	    		}
 	      }
+
 	    });
+
 		} catch (Exception e) {
 			String msg = e.getMessage();
 			System.out.println("Main::Main error: " + e.getMessage());
@@ -113,8 +115,6 @@ public class Main extends Activity {
 		Button btn = (Button) findViewById(R.id.btn_new);		
 		
 		if (btn != null) {
-			int top = btn.getTop();
-			
 			btn.setOnClickListener(new OnClickListener() {
 				public void onClick(View v) {
 					newLayer();
@@ -136,6 +136,7 @@ public class Main extends Activity {
 					EditText note = (EditText) findViewById(R.id.et_new_note);
 					
 					if (note.getText().toString().length() < 1) {
+						
 						setContentView(R.layout.lay_wrong);
 						layid = R.layout.lay_wrong;
 						

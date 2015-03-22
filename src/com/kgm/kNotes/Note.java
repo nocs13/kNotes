@@ -1,7 +1,6 @@
 package com.kgm.kNotes;
 
 public class Note {
-
 	private String note  = "";
 	private String date  = "";
 	
@@ -24,6 +23,6 @@ public class Note {
 	
 	@Override
 	public String toString() {
-		return getNote();
+		return date;
 	}
 }

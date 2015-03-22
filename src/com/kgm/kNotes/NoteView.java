@@ -10,11 +10,13 @@ import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.view.View;
 
+/**
+ * TODO: document your custom view class.
+ */
 public class NoteView extends View {
-	
-	private String   mExampleString; 
-	private int      mExampleColor = Color.RED; 
-	private float    mExampleDimension = 0;
+	private String mExampleString; // TODO: use a default from R.string...
+	private int mExampleColor = Color.RED; // TODO: use a default from R.color...
+	private float mExampleDimension = 0; // TODO: use a default from R.dimen...
 	private Drawable mExampleDrawable;
 
 	private TextPaint mTextPaint;

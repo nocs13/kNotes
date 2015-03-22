@@ -31,7 +31,6 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
 public class Notes {
-	
 	private XmlPullParserFactory xml_object = null;
 	private XmlPullParser xml_parser = null;
 
@@ -171,11 +170,14 @@ public class Notes {
 		
 		Element doc = xml_doc.getDocumentElement();
 		
-		NodeList nl = xml_doc.getElementsByTagName("Note");
+		NodeList nl = xml_doc.getElementsByTagName("Title");
 
 		for (int i = 0; i < nl.getLength(); i++) {
 			Element el = (Element) nl.item(i);
 			
+			el = (Element) el.getParentNode();
+			
+			String title = el.getElementsByTagName("Title").item(0).getTextContent();
 			String date = el.getElementsByTagName("Date").item(0).getTextContent();
 			
 			if (date.equals(note.getDate())) {

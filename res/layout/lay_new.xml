@@ -4,6 +4,12 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+    </LinearLayout>
+
     <EditText
         android:id="@+id/et_new_note"
         android:layout_width="match_parent"
@@ -11,8 +17,7 @@
         android:layout_weight="0.10"
         android:ems="10"
         android:hint="Insert Note"
-        android:inputType="textMultiLine"
-        android:maxLines="100" />
+        android:inputType="textMultiLine" />
 
     <Button
         android:id="@+id/btn_add"
