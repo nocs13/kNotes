@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+    <ListView
+        android:id="@+id/lst_notes"
+        android:layout_width="match_parent"
+        android:layout_height="438dp"
+        style="@android:style/Widget.ListView"
+        android:layout_weight="1.04">
+    </ListView>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="63dp"
+        android:text="New"
+        android:id="@+id/btn_new" />
+
+</LinearLayout>
+<!-- From: file:/home/goga/Projects/Android/kNotes/app/src/main/res/layout/lay_main.xml -->
